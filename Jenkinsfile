@@ -60,6 +60,8 @@ pipeline {
                 kubectl apply -f k8s/blue-deployment.yaml
                 kubectl apply -f k8s/green-deployment.yaml
                 kubectl apply -f k8s/service.yaml
+                sudo pkill -f port-forward || true
+                sudo systemctl restart k8s-portforward
                 '''
             }
         }
