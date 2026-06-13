@@ -11,5 +11,5 @@ receivers:
         send_resolved: false
         http_config:
           basic_auth:
-            username: JENKINS_USERNAME_HERE
-            password: JENKINS_API_TOKEN_HERE
+            username: areebishaq24
+            password: 117ffcc0f899fc1ad7b8080e66268f30f5
