@@ -60,6 +60,13 @@ pipeline {
                 kubectl apply -f k8s/blue-deployment.yaml
                 kubectl apply -f k8s/green-deployment.yaml
                 kubectl apply -f k8s/service.yaml
+
+                kubectl rollout status deployment/sentiment-blue-deployment --timeout=180s
+                kubectl rollout status deployment/sentiment-green-deployment --timeout=180s
+
+                BLUE_POD=$(kubectl get pods -l slot=blue -o jsonpath='{.items[0].metadata.name}')
+                kubectl exec $BLUE_POD -- sh -c "> /app/logs/predictions.log"
+
                 sudo pkill -f port-forward || true
                 sudo systemctl restart k8s-portforward
                 '''
